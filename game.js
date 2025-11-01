@@ -6,14 +6,27 @@ var userClickedPattern = [];
 
 var started = false;
 var level = 0;
+var highScore = 0;
+var soundEnabled = true;
 
 $(document).keypress(function () {
   if (!started) {
-    $("#level-title").text("Level " + level);
-    nextSequence();
-    started = true;
+    startGame();
   }
 });
+
+$("#start-button").click(function () {
+  if (!started) {
+    startGame();
+  }
+});
+
+function startGame() {
+  $("#level-title").text("Level " + level);
+  $("#start-button").hide();
+  nextSequence();
+  started = true;
+}
 
 $(".btn").click(function () {
 
@@ -38,6 +51,13 @@ function checkAnswer(currentLevel) {
     playSound("wrong");
     $("body").addClass("game-over");
     $("#level-title").text("Game Over, Press Any Key to Restart");
+
+    // Update high score
+    if (level > highScore) {
+      highScore = level;
+      $("#high-score-value").text(highScore);
+      localStorage.setItem('simonHighScore', highScore);
+    }
 
     setTimeout(function () {
       $("body").removeClass("game-over");
@@ -68,12 +88,68 @@ function animatePress(currentColor) {
 }
 
 function playSound(name) {
-  var audio = new Audio("sounds/" + name + ".mp3");
-  audio.play();
+  if (soundEnabled) {
+    var audio = new Audio("sounds/" + name + ".mp3");
+    audio.play();
+  }
 }
 
 function startOver() {
   level = 0;
   gamePattern = [];
   started = false;
+  $("#level-title").text("Press A Key or Tap Start to Begin");
+  $("#start-button").show();
+}
+
+// Load high score and sound preference from localStorage
+$(document).ready(function () {
+  highScore = localStorage.getItem('simonHighScore') || 0;
+  $("#high-score-value").text(highScore);
+  soundEnabled = localStorage.getItem('simonSoundEnabled') !== 'false';
+  $("#sound-toggle").text(soundEnabled ? '🔊 Sound On' : '🔇 Sound Off');
+
+  var currentTheme = localStorage.getItem('simonTheme') || 'classic';
+  $("#theme-selector").val(currentTheme);
+  applyTheme(currentTheme);
+
+  // Show instructions on first load
+  if (!localStorage.getItem('simonInstructionsShown')) {
+    $("#instructions-modal").show();
+    localStorage.setItem('simonInstructionsShown', 'true');
+  }
+});
+
+// Sound toggle
+$("#sound-toggle").click(function () {
+  soundEnabled = !soundEnabled;
+  $(this).text(soundEnabled ? '🔊 Sound On' : '🔇 Sound Off');
+  localStorage.setItem('simonSoundEnabled', soundEnabled);
+});
+
+// How to Play button
+$("#how-to-play").click(function () {
+  $("#instructions-modal").show();
+});
+
+// Modal close
+$(document).on('click', '.close', function () {
+  $("#instructions-modal").hide();
+});
+
+$(window).click(function (event) {
+  if (event.target == document.getElementById('instructions-modal')) {
+    $("#instructions-modal").hide();
+  }
+});
+
+// Theme selector
+$("#theme-selector").change(function () {
+  var selectedTheme = $(this).val();
+  applyTheme(selectedTheme);
+  localStorage.setItem('simonTheme', selectedTheme);
+});
+
+function applyTheme(theme) {
+  $('body').removeClass('classic neon').addClass(theme);
 }

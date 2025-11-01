@@ -10,6 +10,47 @@ body {
   color: #FEF2BF;
 }
 
+#start-button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  padding: 15px 30px;
+  background-color: #FEF2BF;
+  border: 2px solid #011F3F;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+#start-button:hover {
+  background-color: #E6D7A3;
+}
+
+#high-score {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  color: #FEF2BF;
+  margin: 10px 0;
+}
+
+#controls {
+  margin: 20px 0;
+}
+
+#controls button, #controls select {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  margin: 0 10px;
+  padding: 10px;
+  background-color: #FEF2BF;
+  border: 2px solid #011F3F;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#controls button:hover, #controls select:hover {
+  background-color: #E6D7A3;
+}
+
 .container {
   display: block;
   width: 50%;
@@ -50,4 +91,156 @@ body {
 .pressed {
   box-shadow: 0 0 20px white;
   background-color: grey;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #FEF2BF;
+  margin: 15% auto;
+  padding: 20px;
+  border: 2px solid #011F3F;
+  width: 80%;
+  max-width: 500px;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+}
+
+.close {
+  color: #011F3F;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* Theme Styles */
+.neon .red { background-color: #FF073A; }
+.neon .green { background-color: #39FF14; }
+.neon .blue { background-color: #00FFFF; }
+.neon .yellow { background-color: #FFFF00; }
+.neon body { background-color: #000000; }
+.neon #level-title, .neon #high-score { color: #FFFFFF; }
+.neon #controls button, .neon #controls select { background-color: #FFFFFF; border-color: #000000; color: #000000; }
+
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .container {
+    width: 60%;
+  }
+  .btn {
+    height: 160px;
+    width: 160px;
+    margin: 18px;
+  }
+  #level-title {
+    font-size: 2.2rem;
+  }
+  #high-score {
+    font-size: 1.1rem;
+  }
+  #start-button {
+    font-size: 1.2rem;
+    padding: 10px 22px;
+  }
+  #controls button, #controls select {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 65%;
+  }
+  .btn {
+    height: 140px;
+    width: 140px;
+    margin: 16px;
+  }
+  #level-title {
+    font-size: 2rem;
+  }
+  #high-score {
+    font-size: 1rem;
+  }
+  #start-button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+  #controls button, #controls select {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 75%;
+  }
+  .btn {
+    height: 120px;
+    width: 120px;
+    margin: 12px;
+  }
+  #level-title {
+    font-size: 1.8rem;
+  }
+  #high-score {
+    font-size: 0.9rem;
+  }
+  #controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #controls button, #controls select {
+    margin: 5px 0;
+    width: 180px;
+  }
+  #start-button {
+    font-size: 1rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+  .btn {
+    height: 100px;
+    width: 100px;
+    margin: 8px;
+  }
+  #level-title {
+    font-size: 1.3rem;
+  }
+  #high-score {
+    font-size: 0.7rem;
+  }
+  #start-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+  #controls button, #controls select {
+    width: 160px;
+  }
 }

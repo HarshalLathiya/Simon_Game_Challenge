@@ -3,13 +3,6 @@ body {
   background-color: #011F3F;
 }
 
-#level-title {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 3rem;
-  margin:  5%;
-  color: #FEF2BF;
-}
-
 #start-button {
   font-family: 'Press Start 2P', cursive;
   font-size: 1.5rem;
@@ -23,6 +16,22 @@ body {
 
 #start-button:hover {
   background-color: #E6D7A3;
+}
+
+#start-button {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(254, 242, 191, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(254, 242, 191, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(254, 242, 191, 0);
+  }
 }
 
 #high-score {
@@ -135,10 +144,43 @@ body {
 .neon .blue { background-color: #00FFFF; }
 .neon .yellow { background-color: #FFFF00; }
 .neon body { background-color: #000000; }
-.neon #level-title, .neon #high-score { color: #FFFFFF; }
+.neon #high-score { color: #FFFFFF; }
 .neon #controls button, .neon #controls select { background-color: #FFFFFF; border-color: #000000; color: #000000; }
 
+.pastel .red { background-color: #FFB3BA; }
+.pastel .green { background-color: #BAFFC9; }
+.pastel .blue { background-color: #BAE1FF; }
+.pastel .yellow { background-color: #FFFFBA; }
+.pastel body { background-color: #F0F0F0; }
+.pastel #high-score { color: #333333; }
+.pastel #controls button, .pastel #controls select { background-color: #FFFFFF; border-color: #CCCCCC; color: #333333; }
 
+/* Footer Styles */
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #011F3F;
+  color: #FEF2BF;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+}
+
+.social-icons {
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  color: #FEF2BF;
+  margin: 0 15px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #E6D7A3;
+}
 
 /* Responsive Design */
 @media (max-width: 1200px) {

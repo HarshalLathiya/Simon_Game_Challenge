@@ -22,7 +22,6 @@ $("#start-button").click(function () {
 });
 
 function startGame() {
-  $("#level-title").text("Level " + level);
   $("#start-button").hide();
   nextSequence();
   started = true;
@@ -50,7 +49,6 @@ function checkAnswer(currentLevel) {
   } else {
     playSound("wrong");
     $("body").addClass("game-over");
-    $("#level-title").text("Game Over, Press Any Key to Restart");
 
     // Update high score
     if (level > highScore) {
@@ -71,7 +69,6 @@ function checkAnswer(currentLevel) {
 function nextSequence() {
   userClickedPattern = [];
   level++;
-  $("#level-title").text("Level " + level);
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
@@ -98,7 +95,6 @@ function startOver() {
   level = 0;
   gamePattern = [];
   started = false;
-  $("#level-title").text("Press A Key or Tap Start to Begin");
   $("#start-button").show();
 }
 
@@ -151,5 +147,5 @@ $("#theme-selector").change(function () {
 });
 
 function applyTheme(theme) {
-  $('body').removeClass('classic neon').addClass(theme);
+  $('body').removeClass('classic neon pastel').addClass(theme);
 }
